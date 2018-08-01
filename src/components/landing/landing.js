@@ -1,18 +1,19 @@
-import React from '../../../../../../Library/Caches/typescript/2.9/node_modules/@types/react';
-import { connect } from '../../../../../../Library/Caches/typescript/2.9/node_modules/@types/react-redux';
-import PropTypes from '../../../../../../Library/Caches/typescript/2.9/node_modules/@types/prop-types';
-import * as sectionActions from '../../action/section';
-import SectionForm from '../section-form/section-form';
-import Section from '../section/section';
+
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import * as categoryActions from '../../action/category-action';
+import CategoryForm from '../category-form/category-form';
+import Category from '../category-item/category-item';
 
 class Landing extends React.Component {
   render() {
-    const { sections, sectionCreate } = this.props;
+    const { categories, categoryCreate } = this.props;
     return (
       <div>
-        <SectionForm onComplete={sectionCreate} />
+        <CategoryForm onComplete={categoryCreate} />
         {
-          sections.map((currentSection, i) => <Section section={currentSection} key={i} />)
+          categories.map((currentCategory, i) => <Category category={currentCategory} key={i} />)
         }
       </div>
     );
@@ -20,26 +21,22 @@ class Landing extends React.Component {
 }
 
 Landing.propTypes = {
-  sections: PropTypes.array,
-  sectionCreate: PropTypes.func,
+  categories: PropTypes.array,
+  categoryCreate: PropTypes.func,
 };
 
-// This is us grabbing the Redux store to make those props of this component
+
 const mapStateToProps = (store) => {
   return {
-    sections: store,
+    categories: store,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sectionCreate: data => dispatch(sectionActions.create(data)),
-    // dispatch({ type: 'SECTION_CREATE', payload: stuff})
+    categoryCreate: data => dispatch(categoryActions.create(data)),
+    
   };
 };
 
-// this is currying, where we return another function with one argument from an outer function
-// this would be what happens behind the scenes
-// const middleFunction = connect(mapStateToProp,mapDispatchToProps);
-// export default middleFunction(Landing);
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);

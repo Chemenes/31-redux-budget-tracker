@@ -1,10 +1,10 @@
-import React from '../../../../Library/Caches/typescript/2.9/node_modules/@types/react';
-import { createStore, applyMiddleware } from '../../../../Library/Caches/typescript/2.9/node_modules/redux';
+import React from 'react';
+import { createStore, applyMiddleware } from 'redux';
 
 // Lines 5 and 6 accomplish the same thing
 // import ReactDom from 'react-dom';
-import { render as renderDom } from '../../../../Library/Caches/typescript/2.9/node_modules/@types/react-dom';
-import { Provider } from '../../../../Library/Caches/typescript/2.9/node_modules/@types/react-redux';
+import { render as renderDom } from 'react-dom';
+import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import App from './components/app/app';

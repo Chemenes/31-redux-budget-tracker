@@ -6,10 +6,10 @@ const defaultState = {
   cost: 0,
 };
 
-export default class SectionForm extends React.Component {
+export default class CategoryForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.section || defaultState;
+    this.state = this.props.category || defaultState;
   }
 
   handleChange = (event) => {
@@ -24,7 +24,7 @@ export default class SectionForm extends React.Component {
 
   render() {
     console.log(this.props, 'WHAT IS THIS')
-    const buttonText = this.props.section ? 'Update' : 'Create';
+    const buttonText = this.props.category ? 'Update' : 'Create';
     return (
       <form
         onSubmit={this.handleSubmit}
