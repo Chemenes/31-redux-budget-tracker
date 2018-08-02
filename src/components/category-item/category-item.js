@@ -31,7 +31,6 @@ Category.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-
   return {
     categoryRemove: data => dispatch(categoryActions.remove(data)),
     categoryUpdate: data => dispatch(categoryActions.update(data)),

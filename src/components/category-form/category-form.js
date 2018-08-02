@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 const defaultState = {
   title: '',
-  cost: 0,
+  price: 0,
+  
 };
 
 export default class CategoryForm extends React.Component {
@@ -23,7 +24,7 @@ export default class CategoryForm extends React.Component {
   }
 
   render() {
-    console.log(this.props, 'WHAT IS THIS')
+    console.log(this.props, 'WHAT IS THIS');
     const buttonText = this.props.category ? 'Update' : 'Create';
     return (
       <form

@@ -1,21 +1,22 @@
 
-const create = ({ title }) => ({
+const create = ({ title, price }) => ({
   type: 'SECTION_CREATE',
   payload: {
     title,
+    price,
     id: Math.random(),
     createdOn: new Date(),
   },
 });
 
-const update = section => ({
-  type: 'SECTION_UPDATE',
-  payload: section,
+const update = category => ({
+  type: 'CATEGORY_UPDATE',
+  payload: category,
 });
 
-const remove = section => ({
-  type: 'SECTION_REMOVE',
-  payload: section,
+const remove = category => ({
+  type: 'CATEGORY_REMOVE',
+  payload: category,
 });
 
 export { create, update, remove };
