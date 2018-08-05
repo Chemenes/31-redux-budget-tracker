@@ -2,17 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CategoryForm from '../category-form/category-form';
-import * as categoryActions from '../../action/category-action';
+import * as categoryActions from '../../action/category';
+import './category.scss';
+import CardForm from '../card-form/card-form';
+import Card from '../card/card';
+import * as cardActions from '../../action/card';
+
+const mapStateToProps = store => ({
+  cards: store.cards,
+});
 
 
 class Category extends React.Component {
   render() {
     const {
+      cards,
+      cardCreate,
       category,
       key,
       categoryRemove,
       categoryUpdate,
     } = this.props;
+
+    const categoryCards = cards[category.id];
     return (
       <div className="category" key={key}>
         <h1> {category.title} </h1>
@@ -24,7 +36,7 @@ class Category extends React.Component {
 }
 
 Category.propTypes = {
-  category: PropTypes.object,
+  cataegory: PropTypes.object,
   key: PropTypes.number,
   categoryRemove: PropTypes.func,
   categoryUpdate: PropTypes.func,
@@ -32,9 +44,14 @@ Category.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    cardCreate: data => dispatch(cardActions.createCard(data)),
     categoryRemove: data => dispatch(categoryActions.remove(data)),
     categoryUpdate: data => dispatch(categoryActions.update(data)),
   };
 };
 
+// Redux's connect method takes in a first argument that we're not utilizing yet so it's null
+// The second arg is the mapDispatchToProps function we defined above
+// connect RETURNS a new function that expects a React component
+// and this is how we hook up this component to the Redux store
 export default connect(null, mapDispatchToProps)(Category);

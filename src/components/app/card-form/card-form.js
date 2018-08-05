@@ -2,27 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import './card-form.scss';
 
-const defaultState = {
+const emptyState = {
   title: '',
+  price: 0,
 };
 
-export default class CategoryForm extends React.Component {
+export default class CardForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.category || defaultState;
+    this.state = props.card || emptyState;
   }
 
 
   handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
+    this.setState({ content: event.target.value });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onComplete(this.state);
+    const categoryId = this.props.category ? this.props.category.id : this.props.card.categoryId;
+    this.props.onComplete({
+      ...this.state,
+      categoryId,
+    });
+    this.setState(emptyState);
   }
 
   render() {
@@ -40,14 +43,8 @@ export default class CategoryForm extends React.Component {
           type="text"
           name="content"
           placeholder="Enter New Card Content"
-          value={this.state.value}
+          value={this.state.content}
           onChange={this.handleChange}
-        />
-        <input
-        type="number"
-        min="0"
-        name="cost"
-        placeholder="cost"
         />
         <button type="submit"> {buttonText} </button>
       </form>
@@ -55,7 +52,7 @@ export default class CategoryForm extends React.Component {
   }
 }
 
-CategoryForm.propTypes = {
+CardForm.propTypes = {
   onComplete: PropTypes.func,
   category: PropTypes.object,
   card: PropTypes.object,
