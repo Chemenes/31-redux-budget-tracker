@@ -54,3 +54,5 @@ const mapDispatchToProps = (dispatch) => {
 // connect RETURNS a new function that expects a React component
 // and this is how we hook up this component to the Redux store
 export default connect(null, mapDispatchToProps)(Category);
+
+// ..
