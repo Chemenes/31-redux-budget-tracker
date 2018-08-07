@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import './card-form.scss';
 
 const defaultState = {
   title: '',
-  price: 0,
-  
+  cost: 0,
 };
 
 export default class CategoryForm extends React.Component {
@@ -13,39 +13,52 @@ export default class CategoryForm extends React.Component {
     this.state = this.props.category || defaultState;
   }
 
+
   handleChange = (event) => {
-    const { value } = event.target;
-    this.setState({ title: value });
+    const { name, value } = event.target;
+    console.log(this.state);
+    
+    console.log(name, value);
+    this.setState({
+      [name]: value,
+    });
   }
 
   handleSubmit = (event) => {
+    console.log('state', this.state);
     event.preventDefault();
     this.props.onComplete(this.state);
   }
 
   render() {
-    console.log(this.props, 'WHAT IS THIS');
-    const buttonText = this.props.category ? 'Update' : 'Create';
+    const { category } = this.props;
+    console.log(this.props.category);
+    
+    const buttonText = category ? 'Update Category' : 'Create Category';
+    const formText = category ? `Update ${this.props.category.title} Category` : 'Create Catergory';
     return (
       <form
-        onSubmit={this.handleSubmit}
         className="category-form"
+        data-cy="category-form"
+        onSubmit={this.handleSubmit}
       >
+        <label htmlFor="title">{formText}</label>
         <input
           type="text"
           name="title"
-          placeholder="title"
+          placeholder="Enter New Card Content"
           value={this.state.title}
           onChange={this.handleChange}
         />
         <input
           type="number"
           min="0"
+          name="cost"
           placeholder="cost"
           value={this.state.cost}
           onChange={this.handleChange}
         />
-        <button type="submit">{buttonText}</button>
+        <button type="submit"> {buttonText} </button>
       </form>
     );
   }
@@ -54,4 +67,5 @@ export default class CategoryForm extends React.Component {
 CategoryForm.propTypes = {
   onComplete: PropTypes.func,
   category: PropTypes.object,
+  card: PropTypes.object,
 };

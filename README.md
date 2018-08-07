@@ -1,3 +1,2 @@
 #### Documentation
-Write a description of the project in your README.md
-//......
+Budget tracker app can create a card, update and delete that card.
