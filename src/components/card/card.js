@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CardForm from '../card-form/card-form';
-import * as cardActions from '../action/card';
+import * as cardActions from '../../action/card';
 
 const mapDispatchToProps = dispatch => ({
   cardRemove: data => dispatch(cardActions.removeCard(data)),
