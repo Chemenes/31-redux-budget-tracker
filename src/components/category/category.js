@@ -4,27 +4,25 @@ import { connect } from 'react-redux';
 import CategoryForm from '../category-form/category-form';
 import * as categoryActions from '../../action/category';
 import './category.scss';
-import CardForm from '../card-form/card-form';
-import Card from '../card/card';
 import * as cardActions from '../../action/card';
 
-const mapStateToProps = store => ({
-  cards: store.cards,
-});
+// const mapStateToProps = store => ({
+//   cards: store.cards,
+// });
 
 
 class Category extends React.Component {
   render() {
     const {
-      cards,
-      cardCreate,
+      // cards,
+      // cardCreate,
       category,
       key,
       categoryRemove,
       categoryUpdate,
     } = this.props;
 
-    const categoryCards = cards[category.id];
+    // const categoryCards = cards[category.id];
     return (
       <div className="category" key={key}>
         <h1> {category.title} </h1>
@@ -36,8 +34,9 @@ class Category extends React.Component {
 }
 
 Category.propTypes = {
-  cataegory: PropTypes.object,
+  category: PropTypes.object,
   key: PropTypes.number,
+  cards: PropTypes.object,
   categoryRemove: PropTypes.func,
   categoryUpdate: PropTypes.func,
 };

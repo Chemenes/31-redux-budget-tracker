@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const defaultState = {
   title: '',
+  cost: 0,
 };
 
 export default class CategoryForm extends React.Component {
@@ -15,39 +16,47 @@ export default class CategoryForm extends React.Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
+    console.log(this.state);
+    
+    console.log(name, value);
     this.setState({
       [name]: value,
     });
   }
 
   handleSubmit = (event) => {
+    console.log('state', this.state);
     event.preventDefault();
     this.props.onComplete(this.state);
   }
 
   render() {
-    const { card } = this.props;
-    const buttonText = card ? 'Update Card' : 'Create Card';
-    const formText = card ? `Update ${card.content} Card` : 'Create Card';
+    const { category } = this.props;
+    console.log(this.props.category);
+    
+    const buttonText = category ? 'Update Category' : 'Create Category';
+    const formText = category ? `Update ${this.props.category.title} Category` : 'Create Catergory';
     return (
       <form
-        className="card-form"
-        data-cy="card-form"
+        className="category-form"
+        data-cy="category-form"
         onSubmit={this.handleSubmit}
       >
-        <label htmlFor="content">{formText}</label>
+        <label htmlFor="title">{formText}</label>
         <input
           type="text"
-          name="content"
+          name="title"
           placeholder="Enter New Card Content"
-          value={this.state.value}
+          value={this.state.title}
           onChange={this.handleChange}
         />
         <input
-        type="number"
-        min="0"
-        name="cost"
-        placeholder="cost"
+          type="number"
+          min="0"
+          name="cost"
+          placeholder="cost"
+          value={this.state.cost}
+          onChange={this.handleChange}
         />
         <button type="submit"> {buttonText} </button>
       </form>

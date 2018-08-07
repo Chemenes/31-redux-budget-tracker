@@ -10,7 +10,7 @@ const emptyState = {
 export default class CardForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.card || emptyState;
+    this.state = this.props.card || emptyState;
   }
 
 
@@ -19,12 +19,10 @@ export default class CardForm extends React.Component {
   }
 
   handleSubmit = (event) => {
+    console.log('cheese');
     event.preventDefault();
     const categoryId = this.props.category ? this.props.category.id : this.props.card.categoryId;
-    this.props.onComplete({
-      ...this.state,
-      categoryId,
-    });
+    this.props.onComplete(this.state.title, this.state.price);
     this.setState(emptyState);
   }
 
