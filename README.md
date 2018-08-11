@@ -1,3 +1,2 @@
 #### Documentation
-Write a description of the project in your README.md
-//......
+Budget tracker app created to create, update and delete budget.
