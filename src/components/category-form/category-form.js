@@ -14,8 +14,8 @@ export default class CategoryForm extends React.Component {
   }
 
   handleChange = (event) => {
-    const { value } = event.target;
-    this.setState({ title: value });
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   handleSubmit = (event) => {

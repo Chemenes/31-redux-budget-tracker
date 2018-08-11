@@ -1,6 +1,6 @@
 
 const create = ({ title, price }) => ({
-  type: 'SECTION_CREATE',
+  type: 'CATEGORY_CREATE',
   payload: {
     title,
     price,
